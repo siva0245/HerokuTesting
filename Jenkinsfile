@@ -26,7 +26,7 @@ pipeline {
                     archiveArtifacts 'target/*.jar'
                 }
             }
-            
+        }
             stage('Deploy') {
                 steps {
                     // Get some code from a GitHub repository
@@ -39,6 +39,6 @@ pipeline {
                     // bat "mvn -Dmaven.test.failure.ignore=true clean package"
                 }
             }
-        }
+        
     }
 }
