@@ -10,14 +10,10 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                // git 'https://github.com/siva0245/HerokuTesting.git'
                 git branch: 'main', url: 'https://github.com/siva0245/HerokuTesting.git'
 
                 // Run Maven on a Unix agent.
                 sh "mvn clean install"
-                // sh "mvn spring-boot:run"
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
 
             post {
@@ -29,25 +25,25 @@ pipeline {
                 }
             }
         }
-            stage('Deploy') {
-                steps {
-                    // Get some code from a GitHub repository
-                    // git 'https://github.com/siva0245/HerokuTesting.git'
+        stage('Deploy') {
+            steps {
+                // Get some code from a GitHub repository
+                // git 'https://github.com/siva0245/HerokuTesting.git'
 
-                    // Run Maven on a Unix agent.
-                    // sh "mvn clean install"
-                    sh "mvn spring-boot:run"
-                    // To run Maven on a Windows agent, use
-                    // bat "mvn -Dmaven.test.failure.ignore=true clean package"
-                }
-                
-                post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
+                // Run Maven on a Unix agent.
+                // sh "mvn clean install"
+                sh "mvn spring-boot:run"
+                // To run Maven on a Windows agent, use
+                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+            
+            post {
+            // If Maven was able to run the tests, even if some of the test
+            // failed, record the test results and archive the jar file.
                 success {
                     echo "successfully deployed"
                 }
-            }
-        
+             }
+        }
     }
 }
