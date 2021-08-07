@@ -12,7 +12,7 @@ pipeline {
                 git 'https://github.com/siva0245/HerokuTesting.git'
 
                 // Run Maven on a Unix agent.
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                sh "mvn clean install"
                 sh "mvn spring-boot:run"
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
@@ -24,6 +24,19 @@ pipeline {
                 success {
                     junit '**/target/surefire-reports/TEST-*.xml'
                     archiveArtifacts 'target/*.jar'
+                }
+            }
+            
+            stage('Deploy') {
+                steps {
+                    // Get some code from a GitHub repository
+                    // git 'https://github.com/siva0245/HerokuTesting.git'
+
+                    // Run Maven on a Unix agent.
+                    // sh "mvn clean install"
+                    sh "mvn spring-boot:run"
+                    // To run Maven on a Windows agent, use
+                    // bat "mvn -Dmaven.test.failure.ignore=true clean package"
                 }
             }
         }
