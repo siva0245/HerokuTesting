@@ -9,7 +9,8 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/siva0245/HerokuTesting.git'
+                // git 'https://github.com/siva0245/HerokuTesting.git'
+                git branch: 'main', url: 'https://github.com/siva0245/HerokuTesting.git'
 
                 // Run Maven on a Unix agent.
                 sh "mvn clean install"
